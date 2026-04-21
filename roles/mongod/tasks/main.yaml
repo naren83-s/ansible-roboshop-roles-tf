@@ -5,7 +5,7 @@
   
 - name: install mongo server #dnf module
   ansible.builtin.dnf:
-      name: mongodb-org
+      name: mongod-org
       state: present
     
 - name: allow remote connection # replace module
