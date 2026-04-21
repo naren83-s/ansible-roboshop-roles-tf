@@ -23,9 +23,9 @@
     src: mongo.repo
     dest: /etc/yum.repos.d/mongo.repo
 
-- name: install mongod client
+- name: install mongodb client
   ansible.builtin.dnf:
-    name: mongod-mongosh
+    name: mongodb-mongosh
     state: present
 
 - name: check products loaded

@@ -5,18 +5,18 @@
   
 - name: install mongo server #dnf module
   ansible.builtin.dnf:
-      name: mongod-org
+      name: mongodb-org
       state: present
     
 - name: allow remote connection # replace module
   ansible.builtin.replace:
-      path: /etc/mongod.conf
+      path: /etc/mongodb.conf
       regexp: '127.0.0.1'
       replace: '0.0.0.0'
 
   
-- name: start and enable mongod # service modulw
+- name: start and enable mongodb # service modulw
   ansible.builtin.service:
-      name: mongod
+      name: mongodb
       enabled: yes
       state: started
