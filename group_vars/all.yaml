@@ -1,6 +1,6 @@
 ansible_user: ec2-user
 ansible_password: DevOps321
-MONGODB_HOST: mongodb-{{ env }}.naren83.online
+MONGODB_HOST: mongod-{{ env }}.naren83.online
 REDIS_HOST: redis-{{ env }}.naren83.online
 MYSQL_HOST: mysql-{{ env }}.naren83.online
 RABBITMQ_HOST: rabbitmq-{{ env }}.naren83.online
