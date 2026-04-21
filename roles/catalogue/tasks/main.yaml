@@ -36,6 +36,7 @@
   ansible.builtin.shell: mongosh --host mongod-dev.naren83.online </app/db/master-data.js
   when: catalogue_output.stdout  | int < 0
 
+
 - name: start catalogue
   tags: 
   - deployment
