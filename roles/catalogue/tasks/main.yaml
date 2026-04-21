@@ -11,7 +11,7 @@
   #ansible.builtin.import_role:
   ansible.builtin.include_role:
     name: common
-    tasks_from: nodejs.yaml
+    tasks_from: nodejs-setup.yaml
 
 - name: systemd setup
   ansible.builtin.import_role:
@@ -29,13 +29,12 @@
     state: present
 
 - name: check products loaded
-  ansible.builtin.command: mongosh --host mongodb-dev.naren83.online --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
+  ansible.builtin.command: mongosh --host "{{ MONGODB_HOST }}" --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
   register: catalogue_output
 
 - name: load the products
-  ansible.builtin.shell: mongosh --host mongodb-dev.naren83.online </app/db/master-data.js
+  ansible.builtin.shell: mongosh --host "{{ MONGODB_HOST }}" </app/db/master-data.js
   when: catalogue_output.stdout  | int < 0
-
 
 - name: start catalogue
   tags: 
