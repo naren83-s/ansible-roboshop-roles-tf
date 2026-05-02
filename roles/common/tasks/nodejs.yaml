@@ -1,13 +1,24 @@
-- name: enable nodejs 20
-  ansible.builtin.command: dnf module enable nodejs:20 -y
+- name: Enable NodeJS 20 module
+  ansible.builtin.shell: dnf module enable nodejs:20 -y
+  become: yes
 
-- name: install nodejs
+- name: Install NodeJS
   ansible.builtin.dnf:
     name: nodejs
     state: present
+  become: yes
 
-- name: install dependencies
-  tags: 
-  - deployment
+- name: Ensure /app directory exists
+  ansible.builtin.file:
+    path: /app
+    state: directory
+    owner: ec2-user
+    group: ec2-user
+    mode: '0755'
+
+- name: Install dependencies
+  tags:
+    - deployment
   community.general.npm:
     path: /app
+
